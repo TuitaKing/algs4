@@ -32,7 +32,7 @@ public class MergeSort extends AbstractSort {
         temp = a;
         show(a);
     }
-    public static void megre_sort(Comparable[] a){
+    public static void megreSort(Comparable[] a){
         result=new Comparable[a.length];
         sort(a,0,a.length-1);
     }

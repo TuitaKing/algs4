@@ -35,8 +35,11 @@ public class Main {
         Comparable[] b=a;
        // mergeSort.merge_sort(a);
         show(a);
-        mergeSort.megre_sort(b);
+       // mergeSort.megreSort(b);
         show(b);
+        QuickSort quickSort=new QuickSort();
+        quickSort.sort(a);
+        show(a);
     }
     public static void show(Comparable[] t){
         StringBuilder sb=new StringBuilder();
