@@ -57,6 +57,7 @@ public class MergeSort extends AbstractSort {
         while (start2 <= end2) {
             a[index++] = result[start2++];
         }
+        //这里全部用小与等于，避免出现某个尾端没有被排序到的情况。比如：不满足第一个while的时候，但是没有到大end2，后面如果不用<=则一直都不能被调用
 
 
     }
