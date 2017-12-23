@@ -1,5 +1,7 @@
 package com.lj.algs4.sort;
 
+import java.util.Random;
+
 //采用遍历的方式
 public class MergeSort extends AbstractSort {
 
@@ -39,7 +41,7 @@ public class MergeSort extends AbstractSort {
     public static void sort(Comparable[] a, int lo, int hi) {
         if (lo >= hi)
             return;
-        int mid = lo + (hi - lo) / 2;
+        int mid = (hi+lo) / 2;
         sort(a, lo, mid);
         sort(a, mid + 1, hi);
         int start1 = lo, end1 = mid;
@@ -51,15 +53,25 @@ public class MergeSort extends AbstractSort {
         while (start1 <= end1 && start2 <= end2) {
             a[index++] = result[start1].compareTo(result[start2]) < 0 ? result[start1++] : result[start2++];
         }
-        while (start1 <= end1) {
+        while (start1 < end1) {
             a[index++] = result[start1++];
         }
-        while (start2 <= end2) {
+        while (start2 <end2) {
             a[index++] = result[start2++];
         }
         //这里全部用小与等于，避免出现某个尾端没有被排序到的情况。比如：不满足第一个while的时候，但是没有到大end2，后面如果不用<=则一直都不能被调用
+    }
 
-
+    public static void main(String agrs[]){
+        Random random=new Random(47);
+        Comparable[] a=new Comparable[random.nextInt(10000)];
+        for(int i=0;i<a.length;i++){
+            a[i]=random.nextInt(100000);
+        }
+        MergeSort inser=new MergeSort();
+        inser.sort(a);
+        boolean b=isSorted(a,false);
+    System.out.println(b);
     }
 
 }
