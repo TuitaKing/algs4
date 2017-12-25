@@ -73,6 +73,38 @@ public class QuickSort extends AbstractSort {
         quickWith3Part(a,hi+1,tail);
 
     }
+//该方法比较的交换的次数会比上面提到的次数少，但是比较的次数会变多。
+    public void quick3Sort(Comparable[] a, int lo, int hi) {
+        if (lo >= hi) return;
+        Comparable key = a[lo];
+        int eq = lo, tail = hi, head = lo;
+        while (eq <= tail) { //如果不用等号，会出现如果当前用作key值是最大值，但是最右边的数据为比最大值还小，则不会发生交换。
+            if (key.compareTo(a[eq]) > 0) {
+
+                exc(a, lo++, eq++);
+            } else if (key.compareTo(a[eq]) < 0 && eq != tail) { //如果当前a[eq]大于key，则从尾部开始遍历到比key值小的进行交换。再一次循环会将他与lo交换。
+                                        // 当最后eq与tail相等，此时eq的值比key大，如果进入下面的语句会产生交换
+                // 当前值小于key时候  当前eq位置 : 9 当前lo位置:7 当前tail位置 9
+                //    1 2 3 2 1 2 3 4 4 9 6 8 5 7 当前的eq==tail为9，进入到下面的while中，减一后退出，然后进入到下面的if，这个时候的a[tail]为4,a[eq]为9，则会交换。所以提前检查当前不是eq==tail的情况
+                // 当前值大于key时候 需要交换 当前eq位置 : 9 当前lo位置:7 当前tail位置 8
+                // 1 2 3 2 1 2 3 4 9 4 6 8 5 7
+                while (key.compareTo(a[tail]) < 0) {
+                    tail--;//循环找到小于key的位置
+                    if (tail <= eq) break;
+                }
+                if (key.compareTo(a[tail]) >= 0) {
+                    exc(a, eq, tail);
+                }
+            } else if (key.compareTo(a[eq]) == 0) {
+                eq++;
+            } else {
+                //当前eq已经运行到和tail相等，但是不满足上面的要求，exMy
+                break;
+            }
+        }
+        quick3Sort(a, head, lo - 1);
+        quick3Sort(a, eq, hi);
+    }
   public static void sort1(Comparable[] a,int lo,int hi){
         if(lo>=hi) return;
         Comparable key=a[lo];
