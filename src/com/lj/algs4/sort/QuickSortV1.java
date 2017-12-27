@@ -40,10 +40,6 @@ public class QuickSortV1 extends AbstractSort {
 			if (leftIndex + 1 < nextRightIndex) {
 				compareAndSort(a, leftIndex + 1, nextRightIndex); //key值右边的
 			}
-//			int rightIndex1 = rightIndex - 1;
-//			int leftIndex1 = keyIndex+1;
-//			int leftIndex2 = rightIndex + 1;
-//			int rightIndex2 = nextRightIndex;
 
 
 	}
